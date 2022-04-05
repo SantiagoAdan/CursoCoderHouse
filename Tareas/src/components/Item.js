@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import Card from 'react-bootstrap/Card'
+import { CardGroup } from "react-bootstrap";
 
 const products = [
   {
     id: 1,
     name: "ASUS ROG RTX 3090",
     price: 2500,
-    category: "Placas De Video",
-    img: "https://m.media-amazon.co/",
+    category: "PlacasDeVideo",
+    img: "https://m.media-amazon.com/images/I/51qTaaObeGL._AC_.jpg",
     stock: 10,
     description: "Descripcion de rtx3090",
   },
@@ -15,7 +17,7 @@ const products = [
     name: "AMD RYZEN 3950X",
     price: 500,
     category: "Procesador",
-    img: "https://encrypted-tbn0.gstatic.com/",
+    img: "https://m.media-amazon.com/images/I/7122uH4-hfL._AC_SX466_.jpg",
     stock: 16,
     description: "Descripcion de ryzen",
   },
@@ -24,7 +26,7 @@ const products = [
     name: "Gskill TridentZ 32gb DDR4 KIT",
     price: 250,
     category: "RAM",
-    img: "https://m.media-amazon.com/images/",
+    img: "https://m.media-amazon.com/images/I/61l4EStxhnL._AC_SX450_.jpg",
     stock: 10,
     description: "Descripcion de gskill",
   },
@@ -56,22 +58,16 @@ export const getProductById = (id) => {
 
 const Item = ({ product }) => {
   return (
-    <article className="CardItem">
-      <header className="Header">
-        <h2 className="ItemHeader">{product.name}</h2>
-      </header>
-      <picture>
-        <img src={product.img} alt={product.name} className="ItemImg" />
-      </picture>
-      <section>
-        <p className="Info">Precio: ${product.price}</p>
-      </section>
-      <footer className="ItemFooter">
-        <Link to={`/item/${product.id}`} className="Option">
-          Ver detalle
-        </Link>
-      </footer>
-    </article>
+    <CardGroup className="container-fluid">
+    <Card className="container">
+      <Card.Img variant="top" src={product.img} />
+      <Card.Body>
+        <Card.Title>{product.name}</Card.Title>
+        <Card.Text>{'$'+product.price}        </Card.Text>
+      </Card.Body>
+      <Card.Footer><Link to={`/item/${product.id}`}>Ver Mas</Link></Card.Footer>
+    </Card>
+  </CardGroup>
   );
 };
 

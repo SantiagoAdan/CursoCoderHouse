@@ -1,23 +1,30 @@
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import CartWidget from "./CartWidget";
+import { NavLink} from 'react-router-dom'
 
 const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">E-Commerce</Navbar.Brand>
+        <Navbar.Brand>
+        <NavLink to='/' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Coder-Gamer</NavLink>
+          </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Categorias" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavLink to='/category/Procesador' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Procesadores</NavLink>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+              <NavLink to='/category/PlacasDeVideo' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Placas de Video</NavLink>
+               
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">
+              <NavLink to='/category/RAM' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Memoria Ram</NavLink>
+
+                </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavLink to='/*' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Arma Tu PC</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#features">Contacto</Nav.Link>

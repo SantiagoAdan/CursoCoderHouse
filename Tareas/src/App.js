@@ -5,25 +5,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 
 const App = () => {
-  const onAdd = (quantity) => {
-    console.log(quantity);
-  };
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <NavBar />
-        <ItemListContainer greeting={"Hola Usuario!"} />
         <Routes>
-          <Route path="/" element={<ItemListContainer />} />
-          <Route
-            path="/category/:categoryId"
-            element={<ItemListContainer greeting={"Hola usuario!"} />}
-          />
-          <Route path="/item/:productId" element={<ItemDetailContainer />} />
-          <Route path="*" element={<h1>404</h1>} />
+        <Route path='/' element={<ItemListContainer />} />
+          <Route path='/category/:categoryId' element={<ItemListContainer />} />
+          <Route path='/item/:id' element={<ItemDetailContainer />} />
+          <Route path='*' element={<h1>404</h1>} />
         </Routes>
       </BrowserRouter>
-    </>
+      <p>Copyrights 2022</p>
+    </div>
   );
 };
 

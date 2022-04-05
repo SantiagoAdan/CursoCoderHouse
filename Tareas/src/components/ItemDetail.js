@@ -1,25 +1,11 @@
-import ItemCount from "./ItemCount";
-import CardGroup from "react-bootstrap/CardGroup";
-import Card from "react-bootstrap/Card";
+import React from 'react';
+//import { Container, Col, Row } from 'react-bootstrap';
 
-const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
+const ItemDetail = () => {
   return (
-    <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={img} alt={name} />
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            <p>{category}</p>
-            {description}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          Precio: {price}
-          <ItemCount />
-        </Card.Footer>
-      </Card>
-    </CardGroup>
+    <div>
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, quo.
+    </div>
   );
 };
 
