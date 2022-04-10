@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import { CardGroup, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const products = [
   {
@@ -58,34 +58,11 @@ export const getProductById = (id) => {
 
 const Item = ({ product }) => {
   return (
-    // <Container>
-    //   <Row>
-    //     <Col>
-    //       <CardGroup>
-    //         <Card>
-    //           <Card.Img
-    //             variant="top"
-    //             src={product.img}
-    //             style={{ width: "18rem" }}
-    //           />
-    //           <Card.Body>
-    //             <Card.Title>{product.name}</Card.Title>
-    //             <Card.Text>{"$" + product.price} </Card.Text>
-    //           </Card.Body>
-    //           <Card.Footer>
-    //             <Link to={`/item/${product.id}`}>Ver Mas</Link>
-    //           </Card.Footer>
-    //         </Card>
-    //       </CardGroup>
-    //     </Col>
-    //   </Row>
-    // </Container>
     <Container>
-    <Row xs={6} md={12} className="g-1">
-   {/* {Array.from({ length: 4 }).map((_, idx) => ( }*/}
+    <Row>
     <Col>
-      <Card>
-        <Card.Img variant="top" src={product.img} />
+      <Card  style={{ width: '18rem' }} >
+        <Card.Img variant="top" src={product.img}/>
         <Card.Body>
           <Card.Title>{product.name}</Card.Title>
           <Card.Text>
