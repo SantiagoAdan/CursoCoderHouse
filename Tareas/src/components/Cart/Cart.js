@@ -12,7 +12,7 @@ const Cart = () => {
         <ListGroup as="ol" numbered>
           <ListGroup.Item
             as="li"
-            className="d-flex justify-content-between align-items-start"
+            className="d-flex justify-content-center align-items-start"
             key={prod.id}
           >
             <div className="ms-2 me-auto">
@@ -25,9 +25,15 @@ const Cart = () => {
           </ListGroup.Item>
         </ListGroup>
       ))}
-      <Button variant="danger" onClick={clearCart}>
+      <div>
+    <Button variant="danger" onClick={clearCart}>
         Vaciar carrito
       </Button>
+      <Button variant="success">
+Terminar Compra
+      </Button>
+
+      </div>
     </div>
   );
 };

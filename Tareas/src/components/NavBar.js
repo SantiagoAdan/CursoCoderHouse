@@ -1,6 +1,7 @@
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import CartWidget from "./CartWidget";
 import { NavLink} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -32,7 +33,9 @@ const NavBar = () => {
           </Nav>
           <Nav>
             <Nav.Link>
+              <Link to="/Cart"> 
               <CartWidget />
+              </Link>
             </Nav.Link>
             <Nav.Link>
               <Button variant="outline-light rounded-pill">Log In</Button>
