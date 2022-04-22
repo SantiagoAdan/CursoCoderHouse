@@ -1,56 +1,59 @@
-import { useEffect, useState } from 'react'
-import ItemList from './ItemList'
-import { getProducts, getProductsByCategory } from './Item'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
+import { firestoreDb } from "./services/Firebase";
+import { getDocs, collection, query, where, limit } from "firebase/firestore";
 
-const ItemListContainer = ()=> {
-    const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(true)
+const ItemDetailContainer = () => {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
-    const { categoryId } = useParams()
+  const { categoryId } = useParams();
 
-    useEffect(() => {
-        if(categoryId) {
-            setLoading(true)
+  useEffect(() => {
+    setLoading(true);
+    const collectionRef = categoryId
+      ? query(
+          collection(firestoreDb, "products"),
+          where("category", "==", categoryId),
+          limit(10)
+        )
+      : collection(firestoreDb, "products");
 
-            getProductsByCategory(categoryId).then(items => {
-                setProducts(items)
-            }).catch(err => {
-                console.log(err)
-            }).finally(() => {
-                setLoading(false)
-            })
-        } else {
-            setLoading(true)
+    getDocs(collectionRef)
+      .then((querySnapshot) => {
+        console.log(querySnapshot.size);
+        const products = querySnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+        setProducts(products);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-            getProducts().then(item => {
-                setProducts(item)
-            }).catch(err  => {
-                console.log(err)
-            }).finally(() => {
-                setLoading(false)
-            })
-        }  
+    return (() => {
+      setProducts([]);
+    });
+  }, [categoryId]);
 
-        return (() => {
-            setProducts([])
-        })          
-    }, [categoryId])
+  return (
+    <div
+      className="container"
+      onClick={() => console.log("click en ItemListContainer")}
+    >
+      {loading ? 
+        <h1>Cargando Productos...</h1>
+       : products.length > 0 ? 
+        <ItemList products={products} />
+       : 
+        <h1>Productos no encontrados</h1>
+      }
+    </div>
+  );
+};
 
-    if(loading) {
-        return <h1>Loading...</h1>
-    }
-
-    if(products.length === 0) {
-        return <h1>No Products!</h1>
-    }
-    
-    return (
-        <div className="container">
-            <ItemList products={products}/>
-        </div>
-    )    
-    
-}
-
-export default ItemListContainer
+export default ItemDetailContainer;
