@@ -16,23 +16,7 @@ const ItemCount = ({ onAdd }) => {
 
 
   return (
-    // <Card className="text-center " style={{ width: "18rem" }}>
-    //   <Card.Body>
-    //     <Card.Header>Carrito</Card.Header>
-    //     <div className="border rounded-pill my-2">
-    //       <Button variant="danger" onClick={decrement}>
-    //         -
-    //       </Button>
-    //       <Card.Title>{count}</Card.Title>
-    //       <Button variant="primary" onClick={increment}>
-    //         +
-    //       </Button>
-    //     </div>
-    //     <Button variant="outline-info" onClick={() => onAdd(count)}>
-    //       Agregar al carrito
-    //     </Button>
-    //   </Card.Body>
-    // </Card>
+
     <Card className="text-center">
       <Card.Body>
         <Card.Title>Agregar al Carrito</Card.Title>

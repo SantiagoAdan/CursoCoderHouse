@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {  useContext } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import CartContext from "../../src/context/CartContext";
 import ItemCount from "./ItemCount";
@@ -6,13 +6,17 @@ import { Link } from "react-router-dom";
 import { useNotification } from "./Notification";
 
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
-  const [quantity, setQuantity] = useState(0);
-  const { addItem } = useContext(CartContext);
-  const {setNotification} = useNotification
+  const { addItem, isInCart } = useContext(CartContext);
+  const { setNotification } = useNotification();
+
   const handleOnAdd = (count) => {
-    setQuantity(count);
+    console.log("agregue al carrito");
+
     addItem({ id, name, price }, count);
-    setNotification('succes', 'Items agregados al carrito!')
+    setNotification(
+      "success",
+      "Se agregaron correctamente los productos al carrito"
+    );
   };
 
   return (
@@ -20,16 +24,18 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
       <Container>
         <Row>
           <Col>
-            <img src={img} alt="" />
+            <img src={img} alt={name} />
           </Col>
           <Col>
-            <div>{description}</div>{" "}
-            {quantity === 0 ? (
-              <ItemCount onAdd={handleOnAdd} />
-            ) : (
-              <Link to="/Cart">
-                <Button>Ver Carrito</Button>
+            <div>CATEGORIA: {category}</div>
+            <div>{description}</div> <div>$"{price}"</div>
+            {isInCart(id) ? (
+              <Link to="./cart"><Button>
+                Ver Carrito
+              </Button>
               </Link>
+            ) : (
+              <ItemCount onAdd={handleOnAdd} stock={stock} />
             )}
           </Col>
         </Row>
